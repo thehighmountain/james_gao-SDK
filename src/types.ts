@@ -1,9 +1,10 @@
 export type TLotRMovie = {
-  id: number
+  id: string
   title: string
   quotes: TLotRQuote[]
 }
 
 export type TLotRQuote = {
+  id: string
   quote: string
 }

@@ -1,6 +1,6 @@
-import { TLotRMovie } from "./types";
+import { TLotRMovie, TLotRQuote } from "./types";
 import { ApiCall } from "./util/apiCall";
-import { movieInstanceFromJson } from "./util/factory";
+import { movieInstanceFromJson, quoteInstanceFromJson } from "./util/factory";
 
 export class LotR {
   apiCall: ApiCall
@@ -12,9 +12,9 @@ export class LotR {
   /**
    * return all movies info
    */
-  public async getAllMovies(): Promise<{ movies: TLotRMovie[] }> {
+  public async movies(): Promise<{ movies: TLotRMovie[] }> {
     const data = await this.apiCall.get<{ movies: object[] }>(
-      `/movies`
+      `/movie`
     )
     // modifications needed as per response
     return {
@@ -26,9 +26,9 @@ export class LotR {
    * return movie by id
    * @param id movie id
    */
-  public async getMovieById(id: {id: string}): Promise<{ movie: TLotRMovie }> {
+  public async movieById(id: {id: string}): Promise<{ movie: TLotRMovie }> {
     const data = await this.apiCall.post<{ movie: object }>(
-      `/movies/${id}`
+      `/movie/${id}`
     )
     // modifications needed as per response
     return {
@@ -36,4 +36,17 @@ export class LotR {
     }
   }
 
+  /**
+   * return quote by id
+   * @param id quote id
+   */
+  public async quoteById(id: {id: string}): Promise<{ quote: TLotRQuote }> {
+    const data = await this.apiCall.post<{ quote: object }>(
+      `/quote/${id}`
+    )
+    // modifications needed as per response
+    return {
+      quote: quoteInstanceFromJson(data.quote, this.apiCall)
+    }
+  }
 }

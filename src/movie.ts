@@ -1,14 +1,14 @@
-import { TLotRMovie, TLotRQuote } from "./types"
+import { TLotRQuote } from "./types"
 import { ApiCall } from "./util/apiCall"
-import { movieInstanceFromJson } from "./util/factory"
+import { quoteInstanceFromJson } from "./util/factory"
 
 export class LotRMovie {
+  id: string
   title: string
-  id: number
 
   private apiCall: ApiCall
 
-  constructor(_id: number, _title: string, _apiCall: ApiCall) {
+  constructor(_id: string, _title: string, _apiCall: ApiCall) {
     this.id = _id
     this.title = _title
     this.apiCall = _apiCall
@@ -18,13 +18,14 @@ export class LotRMovie {
    * return quotes from movie by movie id
    * @param id movie id
    */
-  public async getMovieQuotesById(id: {id: string}): Promise<{ quotes: TLotRQuote[] }> {
-    const data = await this.apiCall.post<{ quotes: TLotRQuote[] }>(
-      `/movies/${id}/quotes`
+  public async getQuotes(id: {id: string}): Promise<{ quotes: TLotRQuote[] }> {
+    const data = await this.apiCall.post<{ quotes: object[] }>(
+      `/movie/${id}/quote`
     )
-
+    
+    // modifications needed as per response
     return {
-      quotes: 
+      quotes: data.quotes.map(quote => quoteInstanceFromJson(quote, this.apiCall))
     }
   }
 }
