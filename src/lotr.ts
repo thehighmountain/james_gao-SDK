@@ -10,7 +10,7 @@ export class LotR {
   }
 
   /**
-   * return all movies info
+   * return all movies
    */
   public async movies(): Promise<{ movies: TLotRMovie[] }> {
     const data = await this.apiCall.get<{ movies: object[] }>(
@@ -33,6 +33,19 @@ export class LotR {
     // modifications needed as per response
     return {
       movie: movieInstanceFromJson(data.movie, this.apiCall)
+    }
+  }
+
+  /**
+   * return all quotes
+   */
+  public async quotes(): Promise<{ quotes: TLotRQuote[] }> {
+    const data = await this.apiCall.get<{ quotes: object[] }>(
+      `/quote`
+    )
+    // modifications needed as per response
+    return {
+      quotes: data.quotes.map(quote => quoteInstanceFromJson(quote, this.apiCall))
     }
   }
 
