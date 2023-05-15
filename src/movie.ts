@@ -17,14 +17,26 @@ export class LotRMovie {
    * return all movies info
    */
   public async getAllMovies(): Promise<{ movies: TLotRMovie[] }> {
-    const data = await this.apiCall.get<{movies: TLotRMovie[]}>(
+    const data = await this.apiCall.get<{ movies: TLotRMovie[] }>(
       `/movies`
     )
-    // modifications needed as per the API response
+    // modifications needed as per response
     return data
   }
 
   /**
-   * 
+   * return movie by id
+   * @param id movie id
+   */
+  public async getMovieById(id: {id: string}): Promise<{ movie: TLotRMovie }> {
+    const data = await this.apiCall.post<{ movie: TLotRMovie }>(
+      `/movies/${id}`
+    )
+    // modifications needed as per response
+    return data
+  }
+
+  /**
+   * return quotes from movie by movie id
    */
 }
