@@ -31,7 +31,7 @@ export class ApiCall {
     const finalUrl = apiBase + apiPath
 
     return fetch(finalUrl, opts).then(async (res) => {
-      return this._handleAPiResponse(res)
+      return this._handleApiResponse(res)
     })
   }
 
@@ -85,16 +85,40 @@ export class ApiCall {
   /**
    * Get Json Data from API
    * @param apiPath Endpoint for API
-   * @param query Data to send, Will be converted to 
+   * @param query Data to send, will be qs.stringified
    */
   public async get<T>(apiPath: string, query: object = {}): Promise<T> {
-    const url = `${apiPath}`
+    let url = `${apiPath}`
     if (Object.keys(query).length > 0) {
       const qs = queryString.stringify(query)
       url = `${apiPath}?${qs}`
     }
 
     const response = await this._fetch(url)
+    return response.json()
+  }
+
+  /**
+   * POST JSON data to API
+   * @param apiPath Endpoint for API
+   * @param query Data for url query, will be qs.stringified
+   * @param body Data to send, will be JSON.stringified
+   * @param opts RequestInit opts, similar to fetch API
+   */
+  public async post<T>(apiPath: string, query: object = {}, body?: object, opts: RequestInit = {}): Promise<T> {
+    let url = apiPath
+    if (Object.keys(query).length > 0) {
+      const qs = queryString.stringify(query);
+      url = `${apiPath}?${qs}`;
+    }
+
+    const response = await this._fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }, // whatever header setting you need to set
+      body: body ? JSON.stringify(body) : undefined,
+      ...opts
+    })
+
     return response.json()
   }
 }
