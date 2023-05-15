@@ -7,9 +7,11 @@ export const movieInstanceFromJson = (movie: object, apiCall: ApiCall): LotRMovi
   const movieInstance: LotRMovie = new LotRMovie(movie['id'], movie['title'], apiCall)
   const lotrMovie = movieFromJson(movie)
 
-  Object.entries(lotrMovie).forEach(([key, value]) => {
-    movieInstance[`${key}`] = value
-  })
+  for (const property in lotrMovie) {
+    if (Object.prototype.hasOwnProperty.call(lotrMovie, property)) {
+      movieInstance[`${property}`] = lotrMovie[property]
+    }
+  }
 
   return movieInstance as LotRMovie & TLotRMovie
 }
@@ -18,9 +20,11 @@ export const quoteInstanceFromJson = (quote: object, apiCall: ApiCall): LotRQuot
   const quoteInstance: LotRQuote = new LotRQuote(quote['id'], quote['quote'], apiCall)
   const lotrQuote = quoteFromJson(quote)
 
-  Object.entries(lotrQuote).forEach(([key, value]) => {
-    quoteInstance[`${key}`] = value
-  })
+  for (const property in lotrQuote) {
+    if (Object.prototype.hasOwnProperty.call(lotrQuote, property)) {
+      quoteInstance[`${property}`] = lotrQuote[property]
+    }
+  }
 
   return quoteInstance as LotRQuote & TLotRQuote
 }
