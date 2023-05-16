@@ -3,6 +3,7 @@ import { LotRQuote } from "../quote";
 import { TLotRMovie, TLotRQuote } from "../types";
 import { ApiCall } from "./apiCall";
 
+// converting raw json to SDK object
 export const movieInstanceFromJson = (movie: object, apiCall: ApiCall): LotRMovie & TLotRMovie => {
   const movieInstance: LotRMovie = new LotRMovie(movie['id'], movie['title'], apiCall)
   const lotrMovie = movieFromJson(movie)
@@ -29,6 +30,7 @@ export const quoteInstanceFromJson = (quote: object, apiCall: ApiCall): LotRQuot
   return quoteInstance as LotRQuote & TLotRQuote
 }
 
+// deep copy
 const movieFromJson = (movie: object): TLotRMovie => {
   return {
     id: movie['id'],
