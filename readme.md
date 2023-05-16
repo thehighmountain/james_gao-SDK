@@ -30,7 +30,7 @@ yarn add @jamesgao25/lotr
 To use the LotR SDK in your code, you need to import as follows.
 
 ```javascript
-const { LotR } = require("@jamesgao25/lotr")
+const { LotR } = require("@jamesgao25/lotr");
 
 const lotr = new LotR(API_KEY); // API_KEY is optional
 ```

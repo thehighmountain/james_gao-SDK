@@ -18,7 +18,7 @@ export class LotRMovie {
    * return quotes from movie by movie id
    * @param id movie id
    */
-  public async getQuotes(id: {id: string}): Promise<{ quotes: TLotRQuote[] }> {
+  public async quotes(id: {id: string}): Promise<{ quotes: TLotRQuote[] }> {
     const data = await this.apiCall.post<{ quotes: object[] }>(
       `/movie/${id}/quote`
     )
