@@ -24,8 +24,8 @@ Our goals for the LotR JS SDK are:
 Important Dependencies and Libraries
 ------------------------------------
 
-* [isomorphic-unfetch] (https://github.com/developit/unfetch): A Promise based HTTP client for the browser and NodeJS
-* [query-string] (https://github.com/sindresorhus/query-string): Library for parsing and stringifying URL query strings
+* [isomorphic-unfetch](https://github.com/developit/unfetch): A Promise based HTTP client for the browser and NodeJS
+* [query-string](https://github.com/sindresorhus/query-string): Library for parsing and stringifying URL query strings
 
 Endpoint Coverage
 -----------------
