@@ -5,9 +5,10 @@ This document is intended to explain design and development decisions related to
 
 ---
 
-* [Project Goals]
-* [Important Dependencies and Libraries]
-* [Code Examples]
+* [Project Goals] (project-goals)
+* [Important Dependencies and Libraries] (#important-dependencies-and-libraries)
+* [Endpoint Coverage] (#endpoint-coverage)
+* [Code Examples] (#code-examples)
 
 Project Goals
 -------------
@@ -27,14 +28,14 @@ Important Dependencies and Libraries
 * [query-string] (https://github.com/sindresorhus/query-string): Library for parsing and stringifying URL query strings
 
 Endpoint Coverage
-=================
+-----------------
 
 Currently, we are supporting 5 features for the LotR server endpoints
 
 You can access movie and quote data using our SDK.
 
 Code Examples
-=============
+-------------
 
 Import the SDK as follows
 
