@@ -5,10 +5,10 @@ This document is intended to explain design and development decisions related to
 
 ---
 
-* [Project Goals] (#project-goals)
-* [Important Dependencies and Libraries] (#important-dependencies-and-libraries)
-* [Endpoint Coverage] (#endpoint-coverage)
-* [Code Examples] (#code-examples)
+* [Project Goals](#project-goals)
+* [Important Dependencies and Libraries](#important-dependencies-and-libraries)
+* [Endpoint Coverage](#endpoint-coverage)
+* [Code Examples](#code-examples)
 
 Project Goals
 -------------
